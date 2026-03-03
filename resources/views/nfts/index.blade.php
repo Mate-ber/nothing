@@ -7,6 +7,10 @@
 <body>
 <h1>Nothing NFTs</h1>
 
+@if (session('status'))
+    <p style="color: green;">{{ session('status') }}</p>
+@endif
+
 @if ($nfts->isEmpty())
     <p>No NFTs yet.</p>
 @else
