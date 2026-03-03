@@ -20,6 +20,8 @@ Route::get('/nfts', [NftController::class, 'index'])
     ->name('nfts.index');
 Route::get('/nfts/{nft}/buy', [NftController::class, 'buy'])
     ->name('nfts.buy');
+Route::post('/nfts/{nft}/purchase', [NftController::class, 'purchase'])
+    ->name('nfts.purchase');
 
 Route::get('/donations/create', [DonationController::class, 'create'])
     ->name('donations.create');

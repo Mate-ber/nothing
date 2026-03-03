@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nft;
+use App\Models\Payment;
+use App\Models\User;
 
 class NftController extends Controller
 {
@@ -20,5 +22,22 @@ class NftController extends Controller
         return view('nfts.buy', [
             'nft' => $nft,
         ]);
+    }
+
+    public function purchase(Nft $nft)
+    {
+        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+
+        Payment::create([
+            'user_id' => $user->id,
+            'amount' => $nft->price,
+            'payment_method' => 'test-nft',
+            'payable_id' => $nft->id,
+            'payable_type' => Nft::class,
+        ]);
+
+        return redirect()
+            ->route('nfts.index')
+            ->with('status', 'NFT purchased (test payment)!');
     }
 }
