@@ -7,6 +7,10 @@
 <body>
 <h1>Nothing Certificates</h1>
 
+@if (session('status'))
+    <p style="color: green;">{{ session('status') }}</p>
+@endif
+
 @if ($certificates->isEmpty())
     <p>No certificates yet.</p>
 @else
