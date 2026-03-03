@@ -15,4 +15,11 @@ class CertificateController extends Controller
             'certificates' => $certificates,
         ]);
     }
+
+    public function buy(Certificate $certificate)
+    {
+        return view('certificates.buy', [
+            'certificate' => $certificate,
+        ]);
+    }
 }

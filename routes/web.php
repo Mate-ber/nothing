@@ -11,6 +11,8 @@ Route::get('/payments', [PaymentController::class, 'index'])
 
 Route::get('/certificates', [CertificateController::class, 'index'])
     ->name('certificates.index');
+Route::get('/certificates/{certificate}/buy', [CertificateController::class, 'buy'])
+    ->name('certificates.buy');
 
 Route::get('/nfts', [NftController::class, 'index'])
     ->name('nfts.index');
