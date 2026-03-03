@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Certificate;
 use App\Models\Nft;
 use App\Models\Donation;
+use Database\Seeders\DemoUserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Certificate::factory()->count(5)->create();
-        Nft::factory()->count(5)->create();
-        Donation::factory()->count(5)->create();
+        $this->call(DemoUserSeeder::class);
+
+        \App\Models\Certificate::factory()->count(5)->create();
+        \App\Models\Nft::factory()->count(5)->create();
+        \App\Models\Donation::factory()->count(5)->create();
     }
 }
