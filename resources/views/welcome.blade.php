@@ -280,6 +280,7 @@
                 <li><a href="{{ route('certificates.index') }}">Buy Nothing certificate</a></li>
                 <li><a href="{{ route('nfts.index') }}">Browse Nothing NFTs</a></li>
                 <li><a href="{{ route('donations.create') }}">Donate to Nothing</a></li>
+                <li><a href="{{ route('payments.index') }}">View demo payments</a></li>
             </ul>
         </nav>
 
