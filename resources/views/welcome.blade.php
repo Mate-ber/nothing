@@ -274,5 +274,14 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+        <nav>
+            <ul>
+                <li><a href="{{ route('certificates.index') }}">Buy Nothing certificate</a></li>
+                <li><a href="{{ route('nfts.index') }}">Browse Nothing NFTs</a></li>
+                <li><a href="{{ route('donations.create') }}">Donate to Nothing</a></li>
+            </ul>
+        </nav>
+
     </body>
 </html>
