@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CertificateController;
+
+Route::get('/certificates', [CertificateController::class, 'index'])
+    ->name('certificates.index');
 
 Route::view('/', 'welcome')->name('home');
 
