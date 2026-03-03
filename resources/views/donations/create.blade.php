@@ -7,6 +7,18 @@
 <body>
 <h1>Donate to Nothing</h1>
 
+@if (session('status'))
+    <p style="color: green;">{{ session('status') }}</p>
+@endif
+
+@if ($errors->any())
+    <ul style="color: red;">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
 <form method="POST" action="{{ route('donations.store') }}">
     @csrf
 

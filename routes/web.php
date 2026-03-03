@@ -13,6 +13,8 @@ Route::get('/nfts', [NftController::class, 'index'])
 
 Route::get('/donations/create', [DonationController::class, 'create'])
     ->name('donations.create');
+Route::post('/donations', [DonationController::class, 'store'])
+    ->name('donations.store');
 
 Route::view('/', 'welcome')->name('home');
 
