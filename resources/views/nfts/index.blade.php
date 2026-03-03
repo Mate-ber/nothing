@@ -12,6 +12,7 @@
 @else
     <ul>
         @foreach ($nfts as $nft)
+            <a href="{{ route('nfts.buy', $nft) }}">Buy this NFT</a>
             <li>
                 <strong>{{ $nft->name }}</strong><br>
                 Blockchain ID: {{ $nft->blockchain_id ?? 'none' }}<br>

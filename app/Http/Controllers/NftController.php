@@ -15,4 +15,10 @@ class NftController extends Controller
             'nfts' => $nfts,
         ]);
     }
+    public function buy(Nft $nft)
+    {
+        return view('nfts.buy', [
+            'nft' => $nft,
+        ]);
+    }
 }
