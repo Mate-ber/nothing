@@ -13,6 +13,8 @@ Route::get('/certificates', [CertificateController::class, 'index'])
     ->name('certificates.index');
 Route::get('/certificates/{certificate}/buy', [CertificateController::class, 'buy'])
     ->name('certificates.buy');
+Route::post('/certificates/{certificate}/purchase', [CertificateController::class, 'purchase'])
+    ->name('certificates.purchase');
 
 Route::get('/nfts', [NftController::class, 'index'])
     ->name('nfts.index');

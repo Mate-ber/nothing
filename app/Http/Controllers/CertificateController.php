@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Certificate;
+use App\Models\Payment;
+use App\Models\User;
 
 class CertificateController extends Controller
 {
@@ -22,4 +23,22 @@ class CertificateController extends Controller
             'certificate' => $certificate,
         ]);
     }
+
+    public function purchase(Certificate $certificate)
+    {
+        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+
+        Payment::create([
+            'user_id' => $user->id,
+            'amount' => $certificate->price,
+            'payment_method' => 'test-certificate',
+            'payable_id' => $certificate->id,
+            'payable_type' => Certificate::class,
+        ]);
+
+        return redirect()
+            ->route('certificates.index')
+            ->with('status', 'Certificate purchased (test payment)!');
+    }
+
 }
