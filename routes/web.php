@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\NftController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\PaymentController;
+
+Route::get('/payments', [PaymentController::class, 'index'])
+    ->name('payments.index');
 
 Route::get('/certificates', [CertificateController::class, 'index'])
     ->name('certificates.index');
