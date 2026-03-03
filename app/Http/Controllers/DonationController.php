@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Donation;
+use App\Models\Payment;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class DonationController extends Controller
 {
@@ -21,9 +23,19 @@ class DonationController extends Controller
 
         $amountInCents = (int) round($validated['amount'] * 100);
 
-        Donation::create([
+        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+
+        $donation = Donation::create([
             'campaign_id' => $validated['campaign_id'] ?? null,
             'amount' => $amountInCents,
+        ]);
+
+        Payment::create([
+            'user_id' => $user->id,
+            'amount' => $amountInCents,
+            'payment_method' => 'test-donation',
+            'payable_id' => $donation->id,
+            'payable_type' => Donation::class,
         ]);
 
         return redirect()

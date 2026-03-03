@@ -14,6 +14,8 @@ class Payment extends Model
         'user_id',
         'amount',
         'payment_method',
+        'payable_id',
+        'payable_type',
     ];
 
     public function user()
