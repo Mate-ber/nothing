@@ -3,12 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\NftController;
+use App\Http\Controllers\DonationController;
 
 Route::get('/certificates', [CertificateController::class, 'index'])
     ->name('certificates.index');
 
 Route::get('/nfts', [NftController::class, 'index'])
     ->name('nfts.index');
+
+Route::get('/donations/create', [DonationController::class, 'create'])
+    ->name('donations.create');
 
 Route::view('/', 'welcome')->name('home');
 
