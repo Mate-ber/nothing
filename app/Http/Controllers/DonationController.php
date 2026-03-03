@@ -42,4 +42,13 @@ class DonationController extends Controller
             ->route('donations.create')
             ->with('status', 'Thank you for donating to Nothing!');
     }
+
+    public function index()
+    {
+        $donations = Donation::orderBy('id', 'desc')->get();
+
+        return view('donations.index', [
+            'donations' => $donations,
+        ]);
+    }
 }
