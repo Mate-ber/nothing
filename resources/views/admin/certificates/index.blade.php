@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ $certificate->id }}</td>
                     <td>{{ $certificate->name }}</td>
-                    <td>{{ \App\Support\Money::cents($certificate->price) }} $</td>
+                    <td>{{ \App\Support\Money::centsToDollars($certificate->price) }} $</td>
                     <td>
                         <a href="{{ route('admin.certificates.edit', $certificate) }}">Edit</a>
                         |
