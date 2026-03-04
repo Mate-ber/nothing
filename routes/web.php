@@ -13,6 +13,12 @@ Route::get('/admin/certificates/create', [CertificateAdminController::class, 'cr
     ->name('admin.certificates.create');
 Route::post('/admin/certificates', [CertificateAdminController::class, 'store'])
     ->name('admin.certificates.store');
+Route::get('/admin/certificates/{certificate}/edit', [CertificateAdminController::class, 'edit'])
+    ->name('admin.certificates.edit');
+Route::put('/admin/certificates/{certificate}', [CertificateAdminController::class, 'update'])
+    ->name('admin.certificates.update');
+Route::delete('/admin/certificates/{certificate}', [CertificateAdminController::class, 'destroy'])
+    ->name('admin.certificates.destroy');
 
 Route::get('/payments', [PaymentController::class, 'index'])
     ->name('payments.index');
