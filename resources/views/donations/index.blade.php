@@ -11,7 +11,7 @@
                 <li>
                     Donation #{{ $donation->id }} —
                     Campaign: {{ $donation->campaign_id ?? 'none' }} —
-                    Amount: {{ \App\Support\Money::centsToDollars($certificate->price) }} $
+                    Amount: {{ \App\Support\Money::centsToDollars($donation->amount) }} $
                 </li>
             @endforeach
         </ul>

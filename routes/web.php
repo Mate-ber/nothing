@@ -5,6 +5,14 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\NftController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\CertificateAdminController;
+
+Route::get('/admin/certificates', [CertificateAdminController::class, 'index'])
+    ->name('admin.certificates.index');
+Route::get('/admin/certificates/create', [CertificateAdminController::class, 'create'])
+    ->name('admin.certificates.create');
+Route::post('/admin/certificates', [CertificateAdminController::class, 'store'])
+    ->name('admin.certificates.store');
 
 Route::get('/payments', [PaymentController::class, 'index'])
     ->name('payments.index');
