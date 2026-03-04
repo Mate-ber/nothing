@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\User;
+use App\Support\DemoUser;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+        $user = DemoUser::get();
 
         $payments = Payment::with('payable')
             ->where('user_id', $user->id)

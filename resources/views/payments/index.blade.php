@@ -36,7 +36,7 @@
                             (missing payable)
                         @endif
                     </td>
-                    <td>{{ number_format($payment->amount / 100, 2) }} $</td>
+                    <td>{{ \App\Support\Money::centsToDollars($payment->amount) }} $</td>
                     <td>{{ $payment->payment_method }}</td>
                 </tr>
             @endforeach

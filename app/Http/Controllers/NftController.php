@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Nft;
 use App\Models\Payment;
 use App\Models\User;
+use App\Support\DemoUser;
 
 class NftController extends Controller
 {
@@ -26,7 +27,7 @@ class NftController extends Controller
 
     public function purchase(Nft $nft)
     {
-        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+        $user = DemoUser::get();
 
         Payment::create([
             'user_id' => $user->id,

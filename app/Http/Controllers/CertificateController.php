@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certificate;
 use App\Models\Payment;
 use App\Models\User;
+use App\Support\DemoUser;
 
 class CertificateController extends Controller
 {
@@ -26,7 +27,7 @@ class CertificateController extends Controller
 
     public function purchase(Certificate $certificate)
     {
-        $user = User::where('email', 'demo@nothing.test')->firstOrFail();
+        $user = DemoUser::get();
 
         Payment::create([
             'user_id' => $user->id,
