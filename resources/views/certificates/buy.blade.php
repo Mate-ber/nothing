@@ -5,7 +5,7 @@
 
     <p>
         {{ $certificate->description }}<br>
-        Price: {{ number_format($certificate->price / 100, 2) }} $
+        Price: {{ \App\Support\Money::centsToDollars($certificate->price) }} $
     </p>
 
     <form method="POST" action="{{ route('certificates.purchase', $certificate) }}">
