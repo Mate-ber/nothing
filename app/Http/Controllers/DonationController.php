@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Support\DemoUser;
+use App\Services\PaymentCreator;
 
 class DonationController extends Controller
 {
@@ -31,13 +32,9 @@ class DonationController extends Controller
             'amount' => $amountInCents,
         ]);
 
-        Payment::create([
-            'user_id' => $user->id,
-            'amount' => $amountInCents,
-            'payment_method' => 'test-donation',
-            'payable_id' => $donation->id,
-            'payable_type' => Donation::class,
-        ]);
+        $creator = new PaymentCreator();
+
+        $creator->create($user, $donation, $amountInCents, 'test-donation');
 
         return redirect()
             ->route('donations.create')

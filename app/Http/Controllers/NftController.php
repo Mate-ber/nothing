@@ -7,6 +7,7 @@ use App\Models\Nft;
 use App\Models\Payment;
 use App\Models\User;
 use App\Support\DemoUser;
+use App\Services\PaymentCreator;
 
 class NftController extends Controller
 {
@@ -29,13 +30,9 @@ class NftController extends Controller
     {
         $user = DemoUser::get();
 
-        Payment::create([
-            'user_id' => $user->id,
-            'amount' => $nft->price,
-            'payment_method' => 'test-nft',
-            'payable_id' => $nft->id,
-            'payable_type' => Nft::class,
-        ]);
+        $creator = new PaymentCreator();
+
+        $creator->create($user, $nft, $nft->price, 'test-nft');
 
         return redirect()
             ->route('nfts.index')

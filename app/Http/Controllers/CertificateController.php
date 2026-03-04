@@ -6,6 +6,7 @@ use App\Models\Certificate;
 use App\Models\Payment;
 use App\Models\User;
 use App\Support\DemoUser;
+use App\Services\PaymentCreator;
 
 class CertificateController extends Controller
 {
@@ -29,13 +30,9 @@ class CertificateController extends Controller
     {
         $user = DemoUser::get();
 
-        Payment::create([
-            'user_id' => $user->id,
-            'amount' => $certificate->price,
-            'payment_method' => 'test-certificate',
-            'payable_id' => $certificate->id,
-            'payable_type' => Certificate::class,
-        ]);
+        $creator = new PaymentCreator();
+
+        $creator->create($user, $certificate, $certificate->price, 'test-certificate');
 
         return redirect()
             ->route('certificates.index')
