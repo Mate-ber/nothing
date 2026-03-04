@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Nothing Certificates</title>
-</head>
-<body>
-<h1>Nothing Certificates</h1>
+@extends('layouts.app', ['title' => 'Nothing Certificates'])
 
-@if (session('status'))
-    <p style="color: green;">{{ session('status') }}</p>
-@endif
+@section('content')
+    <h1>Nothing Certificates</h1>
 
-@if ($certificates->isEmpty())
-    <p>No certificates yet.</p>
-@else
+
     <ul>
         @foreach ($certificates as $certificate)
             <li>
@@ -24,6 +14,4 @@
             </li>
         @endforeach
     </ul>
-@endif
-</body>
-</html>
+@endsection

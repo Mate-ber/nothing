@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Buy Certificate</title>
-</head>
-<body>
-<h1>Buy "{{ $certificate->name }}"</h1>
+@extends('layouts.app', ['title' => 'Buy Certificate'])
 
-<p>
-    {{ $certificate->description }}<br>
-    Price: {{ number_format($certificate->price / 100, 2) }} $
-</p>
+@section('content')
+    <h1>Buy "{{ $certificate->name }}"</h1>
 
-<form method="POST" action="{{ route('certificates.purchase', $certificate) }}">
-    @csrf
+    <p>
+        {{ $certificate->description }}<br>
+        Price: {{ number_format($certificate->price / 100, 2) }} $
+    </p>
 
-    <p>This is a test payment. No real money is charged.</p>
+    <form method="POST" action="{{ route('certificates.purchase', $certificate) }}">
+        @csrf
 
-    <button type="submit">Confirm test purchase</button>
-</form>
-</body>
-</html>
+        <p>This is a test payment. No real money is charged.</p>
+
+        <button type="submit">Confirm test purchase</button>
+    </form>
+@endsection
