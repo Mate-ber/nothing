@@ -5,7 +5,7 @@
 
     <p>
         Blockchain ID: {{ $nft->blockchain_id ?? 'none' }}<br>
-        Price: {{ \App\Support\Money::centsToDollars($certificate->price) }} $
+        Price: {{ \App\Support\Money::centsToDollars($nft->price) }} $
     </p>
 
     <form method="POST" action="{{ route('nfts.purchase', $nft) }}">
