@@ -9,34 +9,30 @@
 
         <div>
             <label for="name">Name</label>
-            <input
-                id="name"
-                name="name"
-                value="{{ old('name', $nft->name) }}"
-                required
-            >
+            <input id="name" name="name" value="{{ old('name', $nft->name) }}" required>
+
+            @error('name')
+            <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
 
         <div>
             <label for="blockchain_id">Blockchain ID (optional)</label>
-            <input
-                id="blockchain_id"
-                name="blockchain_id"
-                value="{{ old('blockchain_id', $nft->blockchain_id) }}"
-            >
+            <input id="blockchain_id" name="blockchain_id" value="{{ old('blockchain_id', $nft->blockchain_id) }}">
+
+            @error('blockchain_id')
+            <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
 
         <div>
             <label for="price">Price (in dollars)</label>
-            <input
-                id="price"
-                name="price"
-                type="number"
-                step="0.01"
-                min="0"
-                value="{{ old('price', \App\Support\Money::centsToDollars($nft->price)) }}"
-                required
-            >
+            <input id="price" name="price" type="number" step="0.01" min="0"
+                   value="{{ old('price', \App\Support\Money::centsToDollars($nft->price)) }}" required>
+
+            @error('price')
+            <div style="color: red;">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit">Save</button>
