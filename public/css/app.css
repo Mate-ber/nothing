@@ -1,0 +1,35 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 2rem;
+    background: #f7fafc;
+    color: #1a202c;
+}
+
+nav {
+    margin-bottom: 1rem;
+}
+
+nav a {
+    margin-right: 0.5rem;
+    color: #3182ce;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    margin-bottom: 0.75rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+}
+
+th, td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+}
