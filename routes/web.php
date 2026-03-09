@@ -8,6 +8,17 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
 use App\Http\Controllers\MyNothingController;
+use App\Http\Controllers\Admin\StatsController;
+
+Route::get('/admin/stats', [StatsController::class, 'index'])
+    ->name('admin.stats.index');
+
+Route::get('/subscriptions', [SubscriptionController::class, 'index'])
+    ->name('subscriptions.index');
+Route::get('/subscriptions/{subscription}', [SubscriptionController::class, 'show'])
+    ->name('subscriptions.show');
+Route::post('/subscriptions/{subscription}/purchase', [SubscriptionController::class, 'purchase'])
+    ->name('subscriptions.purchase');
 
 Route::view('/about-nothing', 'about-nothing')->name('about-nothing');
 

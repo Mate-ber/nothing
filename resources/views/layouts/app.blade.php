@@ -13,6 +13,8 @@
         <a href="{{ route('donations.create') }}">Donate</a> |
         <a href="{{ route('payments.index') }}">Payments</a> |
         <a href="{{ route('my-nothing.show') }}">My Nothing</a> |
+        <a href="{{ route('subscriptions.index') }}">Subscriptions</a> |
+        <a href="{{ route('admin.stats.index') }}">Admin stats</a> |
         <a href="{{ route('about-nothing') }}">About</a>
     </nav>
 

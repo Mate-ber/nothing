@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Certificate::factory()->count(5)->create();
         \App\Models\Nft::factory()->count(5)->create();
         \App\Models\Donation::factory()->count(5)->create();
+        \App\Models\Subscription::factory()->count(3)->create();
     }
 }
