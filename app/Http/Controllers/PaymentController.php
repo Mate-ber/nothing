@@ -18,9 +18,14 @@ class PaymentController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        $totalAmount = $payments->sum('amount');
+        $paymentsCount = $payments->count();
+
         return view('payments.index', [
             'user' => $user,
             'payments' => $payments,
+            'totalAmount' => $totalAmount,
+            'paymentsCount' => $paymentsCount,
         ]);
     }
 }

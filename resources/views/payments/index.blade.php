@@ -3,6 +3,11 @@
 @section('content')
     <h1>Payments for {{ $user->name }}</h1>
 
+    <p>
+        Total payments: {{ $paymentsCount }}<br>
+        Total spent: {{ \App\Support\Money::cents($totalAmount) }} $
+    </p>
+
     @if ($payments->isEmpty())
         <p>No payments yet.</p>
     @else
