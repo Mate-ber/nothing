@@ -8,31 +8,33 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
 
-Route::get('/admin/nfts', [NftAdminController::class, 'index'])
-    ->name('admin.nfts.index');
-Route::get('/admin/nfts/create', [NftAdminController::class, 'create'])
-    ->name('admin.nfts.create');
-Route::post('/admin/nfts', [NftAdminController::class, 'store'])
-    ->name('admin.nfts.store');
-Route::get('/admin/nfts/{nft}/edit', [NftAdminController::class, 'edit'])
-    ->name('admin.nfts.edit');
-Route::put('/admin/nfts/{nft}', [NftAdminController::class, 'update'])
-    ->name('admin.nfts.update');
-Route::delete('/admin/nfts/{nft}', [NftAdminController::class, 'destroy'])
-    ->name('admin.nfts.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/nfts', [NftAdminController::class, 'index'])
+        ->name('admin.nfts.index');
+    Route::get('/admin/nfts/create', [NftAdminController::class, 'create'])
+        ->name('admin.nfts.create');
+    Route::post('/admin/nfts', [NftAdminController::class, 'store'])
+        ->name('admin.nfts.store');
+    Route::get('/admin/nfts/{nft}/edit', [NftAdminController::class, 'edit'])
+        ->name('admin.nfts.edit');
+    Route::put('/admin/nfts/{nft}', [NftAdminController::class, 'update'])
+        ->name('admin.nfts.update');
+    Route::delete('/admin/nfts/{nft}', [NftAdminController::class, 'destroy'])
+        ->name('admin.nfts.destroy');
 
-Route::get('/admin/certificates', [CertificateAdminController::class, 'index'])
-    ->name('admin.certificates.index');
-Route::get('/admin/certificates/create', [CertificateAdminController::class, 'create'])
-    ->name('admin.certificates.create');
-Route::post('/admin/certificates', [CertificateAdminController::class, 'store'])
-    ->name('admin.certificates.store');
-Route::get('/admin/certificates/{certificate}/edit', [CertificateAdminController::class, 'edit'])
-    ->name('admin.certificates.edit');
-Route::put('/admin/certificates/{certificate}', [CertificateAdminController::class, 'update'])
-    ->name('admin.certificates.update');
-Route::delete('/admin/certificates/{certificate}', [CertificateAdminController::class, 'destroy'])
-    ->name('admin.certificates.destroy');
+    Route::get('/admin/certificates', [CertificateAdminController::class, 'index'])
+        ->name('admin.certificates.index');
+    Route::get('/admin/certificates/create', [CertificateAdminController::class, 'create'])
+        ->name('admin.certificates.create');
+    Route::post('/admin/certificates', [CertificateAdminController::class, 'store'])
+        ->name('admin.certificates.store');
+    Route::get('/admin/certificates/{certificate}/edit', [CertificateAdminController::class, 'edit'])
+        ->name('admin.certificates.edit');
+    Route::put('/admin/certificates/{certificate}', [CertificateAdminController::class, 'update'])
+        ->name('admin.certificates.update');
+    Route::delete('/admin/certificates/{certificate}', [CertificateAdminController::class, 'destroy'])
+        ->name('admin.certificates.destroy');
+});
 
 Route::get('/payments', [PaymentController::class, 'index'])
     ->name('payments.index');
