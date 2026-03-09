@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
 use App\Http\Controllers\MyNothingController;
 
+Route::view('/about-nothing', 'about-nothing')->name('about-nothing');
+
 Route::get('/my-nothing', [MyNothingController::class, 'show'])
     ->name('my-nothing.show');
 
