@@ -5,7 +5,7 @@
 
     <p>
         Hello, {{ $user->name }}.<br>
-        You have spent {{ \App\Support\Money::cents($totalAmount) }} $ on Nothing so far.
+        You have spent {{ \App\Support\Money::centsToDollars($totalAmount) }} $ on Nothing so far.
     </p>
 
     @if ($payments->isEmpty())
