@@ -5,7 +5,7 @@
 
     <p>
         Total payments: {{ $paymentsCount }}<br>
-        Total spent: {{ \App\Support\Money::cents($totalAmount) }} $
+        Total spent: {{ \App\Support\Money::centsToDollars($totalAmount) }} $
     </p>
 
     @if ($payments->isEmpty())
