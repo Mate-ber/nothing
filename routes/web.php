@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
 use App\Http\Controllers\MyNothingController;
 use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::get('/admin/stats', [StatsController::class, 'index'])
     ->name('admin.stats.index');
