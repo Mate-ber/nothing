@@ -10,7 +10,8 @@
         <a href="{{ route('certificates.index') }}">Certificates</a> |
         <a href="{{ route('nfts.index') }}">NFTs</a> |
         <a href="{{ route('donations.create') }}">Donate</a> |
-        <a href="{{ route('payments.index') }}">Payments</a>
+        <a href="{{ route('payments.index') }}">Payments</a> |
+        <a href="{{ route('my-nothing.show') }}">My Nothing</a>
     </nav>
 
     <hr>

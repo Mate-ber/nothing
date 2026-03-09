@@ -7,6 +7,10 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
+use App\Http\Controllers\MyNothingController;
+
+Route::get('/my-nothing', [MyNothingController::class, 'show'])
+    ->name('my-nothing.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/nfts', [NftAdminController::class, 'index'])
