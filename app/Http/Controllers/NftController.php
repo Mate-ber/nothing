@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Nft;
 use App\Models\Payment;
 use App\Models\User;
-use App\Support\DemoUser;
 use App\Services\PaymentCreator;
 
 class NftController extends Controller
@@ -28,7 +27,7 @@ class NftController extends Controller
 
     public function purchase(Nft $nft)
     {
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $creator = new PaymentCreator();
 

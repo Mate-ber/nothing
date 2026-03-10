@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Certificate;
 use App\Models\Payment;
 use App\Models\User;
-use App\Support\DemoUser;
 use App\Services\PaymentCreator;
 
 class CertificateController extends Controller
@@ -28,7 +27,7 @@ class CertificateController extends Controller
 
     public function purchase(Certificate $certificate)
     {
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $creator = new PaymentCreator();
 

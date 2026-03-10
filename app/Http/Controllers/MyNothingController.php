@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Support\DemoUser;
 
 class MyNothingController extends Controller
 {
     public function show()
     {
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $payments = Payment::with('payable')
             ->where('user_id', $user->id)

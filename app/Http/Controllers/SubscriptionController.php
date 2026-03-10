@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use App\Services\PaymentCreator;
-use App\Support\DemoUser;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
@@ -27,7 +26,7 @@ class SubscriptionController extends Controller
 
     public function purchase(Subscription $subscription, Request $request)
     {
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $creator = new PaymentCreator();
 

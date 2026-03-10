@@ -16,6 +16,17 @@
         <a href="{{ route('subscriptions.index') }}">Subscriptions</a> |
         <a href="{{ route('admin.stats.index') }}">Admin stats</a> |
         <a href="{{ route('about-nothing') }}">About</a>
+
+        @auth
+            <span>Hi, {{ auth()->user()->name }}</span> |
+            <form method="POST" action="{{ route('logout') }}" style="display:inline">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}">Login</a> |
+            <a href="{{ route('register') }}">Register</a>
+        @endauth
     </nav>
 
     <hr>

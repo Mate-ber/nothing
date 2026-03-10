@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\User;
-use App\Support\DemoUser;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $payments = Payment::with('payable')
             ->where('user_id', $user->id)

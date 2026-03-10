@@ -6,7 +6,6 @@ use App\Models\Donation;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Support\DemoUser;
 use App\Services\PaymentCreator;
 
 class DonationController extends Controller
@@ -25,7 +24,7 @@ class DonationController extends Controller
 
         $amountInCents = (int) round($validated['amount'] * 100);
 
-        $user = DemoUser::get();
+        $user = auth()->user();
 
         $donation = Donation::create([
             'campaign_id' => $validated['campaign_id'] ?? null,
