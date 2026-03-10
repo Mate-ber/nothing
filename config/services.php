@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'nothing' => [
+        'admin_email' => env('NOTHING_ADMIN_EMAIL', 'admin@nothing.test'),
+    ],
+
 ];

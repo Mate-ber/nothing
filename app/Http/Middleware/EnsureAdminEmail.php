@@ -16,7 +16,7 @@ class EnsureAdminEmail
             abort(401);
         }
 
-        $adminEmail = config('nothing.admin_email');
+        $adminEmail = config('services.nothing.admin_email');
 
         if (! $adminEmail || $user->email !== $adminEmail) {
             abort(403);
@@ -25,4 +25,3 @@ class EnsureAdminEmail
         return $next($request);
     }
 }
-

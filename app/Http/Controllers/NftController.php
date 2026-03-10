@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Nft;
-use App\Models\Payment;
-use App\Models\User;
 use App\Services\PaymentCreator;
 
 class NftController extends Controller

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Certificate;
-use App\Models\Payment;
-use App\Models\User;
 use App\Services\PaymentCreator;
 
 class CertificateController extends Controller

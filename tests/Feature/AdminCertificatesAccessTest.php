@@ -30,7 +30,7 @@ class AdminCertificatesAccessTest extends TestCase
     public function test_admin_user_can_access_admin_certificates_index(): void
     {
         $admin = User::factory()->create([
-            'email' => config('nothing.admin_email'),
+            'email' => config('services.nothing.admin_email'),
         ]);
 
         $response = $this->actingAs($admin)

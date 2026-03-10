@@ -14,7 +14,7 @@ class AdminNftsCrudTest extends TestCase
     public function test_admin_can_create_nft(): void
     {
         $user = User::factory()->create([
-            'email' => config('nothing.admin_email'),
+            'email' => config('services.nothing.admin_email'),
         ]);
 
         $response = $this->actingAs($user)->post('/admin/nfts', [
