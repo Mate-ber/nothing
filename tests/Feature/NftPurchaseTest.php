@@ -13,15 +13,14 @@ class NftPurchaseTest extends TestCase
 
     public function test_nft_purchase_creates_payment(): void
     {
-        User::factory()->create([
-            'email' => 'demo@nothing.test',
-        ]);
+        $user = User::factory()->create();
 
         $nft = Nft::factory()->create([
             'price' => 4321,
         ]);
 
-        $response = $this->post("/nfts/{$nft->id}/purchase");
+        $response = $this->actingAs($user)
+            ->post("/nfts/{$nft->id}/purchase");
 
         $response->assertRedirect('/nfts');
 

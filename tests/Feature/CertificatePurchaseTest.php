@@ -13,15 +13,14 @@ class CertificatePurchaseTest extends TestCase
 
     public function test_certificate_purchase_creates_payment(): void
     {
-        User::factory()->create([
-            'email' => 'demo@nothing.test',
-        ]);
+        $user = User::factory()->create();
 
         $certificate = Certificate::factory()->create([
             'price' => 1234,
         ]);
 
-        $response = $this->post("/certificates/{$certificate->id}/purchase");
+        $response = $this->actingAs($user)
+            ->post("/certificates/{$certificate->id}/purchase");
 
         $response->assertRedirect('/certificates');
 

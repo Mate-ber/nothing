@@ -26,10 +26,25 @@ class SubscriptionController extends Controller
 
     public function purchase(Subscription $subscription, Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
+
+        $already = $user->subscriptions()
+            ->where('subscription_id', $subscription->id)
+            ->wherePivot('status', 'active')
+            ->exists();
+
+        if ($already) {
+            return redirect()
+                ->route('subscriptions.show', $subscription)
+                ->with('status', 'You already have this subscription active.');
+        }
+
+        $user->subscriptions()->attach($subscription->id, [
+            'started_at' => now(),
+            'status' => 'active',
+        ]);
 
         $creator = new PaymentCreator();
-
         $creator->create($user, $subscription, $subscription->price, 'test-subscription');
 
         return redirect()

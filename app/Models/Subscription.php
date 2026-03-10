@@ -19,4 +19,11 @@ class Subscription extends Model
     {
         return $this->morphMany(Payment::class, 'payable');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(\App\Models\User::class, 'user_subscriptions')
+            ->withPivot(['started_at', 'status'])
+            ->withTimestamps();
+    }
 }

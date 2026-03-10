@@ -15,7 +15,6 @@ class MyNothingPageTest extends TestCase
     public function test_my_nothing_page_shows_recent_payments(): void
     {
         $user = User::factory()->create([
-            'email' => 'demo@nothing.test',
             'name' => 'Demo Nothing User',
         ]);
 
@@ -31,7 +30,7 @@ class MyNothingPageTest extends TestCase
             'payable_type' => Donation::class,
         ]);
 
-        $response = $this->get('/my-nothing');
+        $response = $this->actingAs($user)->get('/my-nothing');
 
         $response->assertStatus(200);
         $response->assertSee('My Nothing');

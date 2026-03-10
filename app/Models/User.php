@@ -66,4 +66,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Payment::class);
     }
+
+    public function subscriptions()
+    {
+        return $this->belongsToMany(\App\Models\Subscription::class, 'user_subscriptions')
+            ->withPivot(['started_at', 'status'])
+            ->withTimestamps();
+    }
 }

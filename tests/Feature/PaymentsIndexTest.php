@@ -15,7 +15,6 @@ class PaymentsIndexTest extends TestCase
     public function test_payments_index_shows_payments_for_demo_user(): void
     {
         $user = User::factory()->create([
-            'email' => 'demo@nothing.test',
             'name' => 'Demo Nothing User',
         ]);
 
@@ -31,7 +30,7 @@ class PaymentsIndexTest extends TestCase
             'payable_type' => Donation::class,
         ]);
 
-        $response = $this->get('/payments');
+        $response = $this->actingAs($user)->get('/payments');
 
         $response->assertStatus(200);
         $response->assertSee('Payments for Demo Nothing User');

@@ -20,7 +20,7 @@ Route::get('/subscriptions/{subscription}', [SubscriptionController::class, 'sho
 Route::view('/about-nothing', 'about-nothing')->name('about-nothing');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin.email'])->group(function () {
     Route::get('/admin/stats', [StatsController::class, 'index'])
         ->name('admin.stats.index');
     Route::get('/admin/nfts', [NftAdminController::class, 'index'])

@@ -17,11 +17,23 @@ class AdminCertificatesAccessTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    public function test_authenticated_user_can_access_admin_certificates_index(): void
+    public function test_non_admin_user_cannot_access_admin_certificates_index(): void
     {
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
+            ->get('/admin/certificates');
+
+        $response->assertForbidden();
+    }
+
+    public function test_admin_user_can_access_admin_certificates_index(): void
+    {
+        $admin = User::factory()->create([
+            'email' => config('nothing.admin_email'),
+        ]);
+
+        $response = $this->actingAs($admin)
             ->get('/admin/certificates');
 
         $response->assertStatus(200);

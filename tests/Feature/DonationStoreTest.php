@@ -13,14 +13,13 @@ class DonationStoreTest extends TestCase
 
     public function test_donation_creates_donation_and_payment(): void
     {
-        User::factory()->create([
-            'email' => 'demo@nothing.test',
-        ]);
+        $user = User::factory()->create();
 
-        $response = $this->post('/donations', [
-            'campaign_id' => 'nothing-general',
-            'amount' => 5.00,
-        ]);
+        $response = $this->actingAs($user)
+            ->post('/donations', [
+                'campaign_id' => 'nothing-general',
+                'amount' => 5.00,
+            ]);
 
         $response->assertRedirect('/donations/create');
 

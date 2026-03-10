@@ -13,7 +13,9 @@ class AdminCertificatesCrudTest extends TestCase
 
     public function test_admin_can_create_certificate(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => config('nothing.admin_email'),
+        ]);
 
         $response = $this->actingAs($user)->post('/admin/certificates', [
             'name' => 'Test Certificate',
