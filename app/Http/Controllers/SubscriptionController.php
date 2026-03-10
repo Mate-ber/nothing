@@ -28,21 +28,27 @@ class SubscriptionController extends Controller
     {
         $user = $request->user();
 
-        $already = $user->subscriptions()
+        $existing = $user->subscriptions()
             ->where('subscription_id', $subscription->id)
-            ->wherePivot('status', 'active')
-            ->exists();
+            ->first();
 
-        if ($already) {
+        if ($existing && $existing->pivot->status === 'active') {
             return redirect()
                 ->route('subscriptions.show', $subscription)
                 ->with('status', 'You already have this subscription active.');
         }
 
-        $user->subscriptions()->attach($subscription->id, [
-            'started_at' => now(),
-            'status' => 'active',
-        ]);
+        if ($existing) {
+            $user->subscriptions()->updateExistingPivot($subscription->id, [
+                'started_at' => now(),
+                'status' => 'active',
+            ]);
+        } else {
+            $user->subscriptions()->attach($subscription->id, [
+                'started_at' => now(),
+                'status' => 'active',
+            ]);
+        }
 
         $creator = new PaymentCreator();
         $creator->create($user, $subscription, $subscription->price, 'test-subscription');

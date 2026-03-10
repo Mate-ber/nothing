@@ -16,6 +16,14 @@ class DemoUserSeeder extends Seeder
     public function run(): void
     {
         User::firstOrCreate(
+            ['email' => config('services.nothing.admin_email')],
+            [
+                'name' => 'Admin Nothing User',
+                'password' => Hash::make('password'), // simple for local
+            ]
+        );
+
+        User::firstOrCreate(
             ['email' => 'demo@nothing.test'],
             [
                 'name' => 'Demo Nothing User',

@@ -10,13 +10,13 @@ class MyNothingController extends Controller
     {
         $user = auth()->user();
 
+        $totalAmount = Payment::where('user_id', $user->id)->sum('amount');
+
         $payments = Payment::with('payable')
             ->where('user_id', $user->id)
             ->orderBy('id', 'desc')
             ->limit(10)
             ->get();
-
-        $totalAmount = $payments->sum('amount');
 
         return view('my-nothing.show', [
             'user' => $user,
