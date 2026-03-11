@@ -7,7 +7,6 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\CertificateAdminController;
 use App\Http\Controllers\Admin\NftAdminController;
-use App\Http\Controllers\MyNothingController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\SubscriptionAdminController;
@@ -83,8 +82,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/nfts/{nft}/buy', [NftController::class, 'buy'])->name('nfts.buy');
     Route::post('/nfts/{nft}/purchase', [NftController::class, 'purchase'])->name('nfts.purchase');
-
-    Route::get('/my-nothing', [MyNothingController::class, 'show'])->name('my-nothing.show');
 
     Route::post('/subscriptions/{subscription}/purchase', [SubscriptionController::class, 'purchase'])
         ->name('subscriptions.purchase');
