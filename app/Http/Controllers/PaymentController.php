@@ -10,10 +10,10 @@ class PaymentController extends Controller
     {
         $user = auth()->user();
 
-        $payments = Payment::with('payable')
-            ->where('user_id', $user->id)
+        $payments = Payment::where('user_id', $user->id)
             ->orderBy('id', 'desc')
             ->get();
+        $payments->load('payable');
 
         $totalAmount = $payments->sum('amount');
         $paymentsCount = $payments->count();
