@@ -16,7 +16,6 @@ class DonationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'campaign_id' => ['nullable', 'string', 'max:255'],
             'amount' => ['required', 'numeric', 'min:1'],
         ]);
 
@@ -25,7 +24,7 @@ class DonationController extends Controller
         $user = auth()->user();
 
         $donation = Donation::create([
-            'campaign_id' => $validated['campaign_id'] ?? null,
+            'campaign_id' => 'nothing-general',
             'amount' => $amountInCents,
         ]);
 

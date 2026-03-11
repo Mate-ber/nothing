@@ -12,9 +12,11 @@ class CertificateAdminController extends Controller
     public function index()
     {
         $certificates = Certificate::orderBy('id')->get();
+        $deletedCertificates = Certificate::onlyTrashed()->orderByDesc('id')->get();
 
         return view('admin.certificates.index', [
             'certificates' => $certificates,
+            'deletedCertificates' => $deletedCertificates,
         ]);
     }
 
@@ -79,5 +81,15 @@ class CertificateAdminController extends Controller
         return redirect()
             ->route('admin.certificates.index')
             ->with('status', 'Certificate deleted.');
+    }
+
+    public function restore($certificate)
+    {
+        $certificate = Certificate::onlyTrashed()->findOrFail($certificate);
+        $certificate->restore();
+
+        return redirect()
+            ->route('admin.certificates.index')
+            ->with('status', 'Certificate restored.');
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\NftAdminController;
 use App\Http\Controllers\MyNothingController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\Admin\SubscriptionAdminController;
 
 
 Route::get('/subscriptions', [SubscriptionController::class, 'index'])
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
             ->name('admin.nfts.update');
         Route::delete('/admin/nfts/{nft}', [NftAdminController::class, 'destroy'])
             ->name('admin.nfts.destroy');
+        Route::post('/admin/nfts/{nft}/restore', [NftAdminController::class, 'restore'])
+            ->name('admin.nfts.restore');
 
         Route::get('/admin/certificates', [CertificateAdminController::class, 'index'])
             ->name('admin.certificates.index');
@@ -50,6 +53,23 @@ Route::middleware('auth')->group(function () {
             ->name('admin.certificates.update');
         Route::delete('/admin/certificates/{certificate}', [CertificateAdminController::class, 'destroy'])
             ->name('admin.certificates.destroy');
+        Route::post('/admin/certificates/{certificate}/restore', [CertificateAdminController::class, 'restore'])
+            ->name('admin.certificates.restore');
+
+        Route::get('/admin/subscriptions', [SubscriptionAdminController::class, 'index'])
+            ->name('admin.subscriptions.index');
+        Route::get('/admin/subscriptions/create', [SubscriptionAdminController::class, 'create'])
+            ->name('admin.subscriptions.create');
+        Route::post('/admin/subscriptions', [SubscriptionAdminController::class, 'store'])
+            ->name('admin.subscriptions.store');
+        Route::get('/admin/subscriptions/{subscription}/edit', [SubscriptionAdminController::class, 'edit'])
+            ->name('admin.subscriptions.edit');
+        Route::put('/admin/subscriptions/{subscription}', [SubscriptionAdminController::class, 'update'])
+            ->name('admin.subscriptions.update');
+        Route::delete('/admin/subscriptions/{subscription}', [SubscriptionAdminController::class, 'destroy'])
+            ->name('admin.subscriptions.destroy');
+        Route::post('/admin/subscriptions/{subscription}/restore', [SubscriptionAdminController::class, 'restore'])
+            ->name('admin.subscriptions.restore');
     });
 
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');

@@ -39,4 +39,33 @@
             </tbody>
         </table>
     @endif
+
+    @if ($deletedNfts->isNotEmpty())
+        <h2>Deleted NFTs</h2>
+        <table border="1" cellpadding="6">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Deleted At</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($deletedNfts as $nft)
+                <tr>
+                    <td>{{ $nft->id }}</td>
+                    <td>{{ $nft->name }}</td>
+                    <td>{{ $nft->deleted_at }}</td>
+                    <td>
+                        <form action="{{ route('admin.nfts.restore', $nft->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Restore</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
 @endsection

@@ -17,7 +17,6 @@ class DonationStoreTest extends TestCase
 
         $response = $this->actingAs($user)
             ->post('/donations', [
-                'campaign_id' => 'nothing-general',
                 'amount' => 5.00,
             ]);
 

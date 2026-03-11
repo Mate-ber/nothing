@@ -37,4 +37,33 @@
             </tbody>
         </table>
     @endif
+
+    @if ($deletedCertificates->isNotEmpty())
+        <h2>Deleted Certificates</h2>
+        <table border="1" cellpadding="6">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Deleted At</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($deletedCertificates as $certificate)
+                <tr>
+                    <td>{{ $certificate->id }}</td>
+                    <td>{{ $certificate->name }}</td>
+                    <td>{{ $certificate->deleted_at }}</td>
+                    <td>
+                        <form action="{{ route('admin.certificates.restore', $certificate->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Restore</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
 @endsection

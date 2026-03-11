@@ -3,6 +3,12 @@
 @section('content')
     <h1>Admin Stats</h1>
 
+    <p>
+        <a href="{{ route('admin.certificates.index') }}">Manage certificates</a> |
+        <a href="{{ route('admin.nfts.index') }}">Manage NFTs</a> |
+        <a href="{{ route('admin.subscriptions.index') }}">Manage subscriptions</a>
+    </p>
+
     <ul>
         <li>Total payments: {{ $totalPayments }}</li>
         <li>Total amount: {{ \App\Support\Money::centsToDollars($totalAmount) }} $</li>

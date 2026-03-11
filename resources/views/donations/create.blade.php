@@ -8,14 +8,7 @@
     <form method="POST" action="{{ route('donations.store') }}">
         @csrf
 
-        <div>
-            <label for="campaign_id">Campaign</label>
-            <input type="text" id="campaign_id" name="campaign_id" value="{{ old('campaign_id', 'nothing-general') }}">
-
-            @error('campaign_id')
-            <div style="color: red;">{{ $message }}</div>
-            @enderror
-        </div>
+        <p>Campaign: <strong>nothing-general</strong></p>
 
         <div>
             <label for="amount">Amount (in dollars)</label>

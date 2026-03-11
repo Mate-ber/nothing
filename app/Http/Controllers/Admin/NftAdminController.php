@@ -12,9 +12,11 @@ class NftAdminController extends Controller
     public function index()
     {
         $nfts = Nft::orderBy('id')->get();
+        $deletedNfts = Nft::onlyTrashed()->orderByDesc('id')->get();
 
         return view('admin.nfts.index', [
             'nfts' => $nfts,
+            'deletedNfts' => $deletedNfts,
         ]);
     }
 
@@ -79,5 +81,15 @@ class NftAdminController extends Controller
         return redirect()
             ->route('admin.nfts.index')
             ->with('status', 'NFT deleted.');
+    }
+
+    public function restore($nft)
+    {
+        $nft = Nft::onlyTrashed()->findOrFail($nft);
+        $nft->restore();
+
+        return redirect()
+            ->route('admin.nfts.index')
+            ->with('status', 'NFT restored.');
     }
 }
