@@ -20,7 +20,12 @@ class NftPurchaseTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->post("/nfts/{$nft->id}/purchase");
+            ->post("/nfts/{$nft->id}/purchase", [
+                'card_name' => 'Test User',
+                'card_number' => '4242424242424242',
+                'card_expiry' => '12/30',
+                'card_cvc' => '123',
+            ]);
 
         $response->assertRedirect('/nfts');
 

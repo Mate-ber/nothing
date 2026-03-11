@@ -20,7 +20,12 @@ class CertificatePurchaseTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->post("/certificates/{$certificate->id}/purchase");
+            ->post("/certificates/{$certificate->id}/purchase", [
+                'card_name' => 'Test User',
+                'card_number' => '4242424242424242',
+                'card_expiry' => '12/30',
+                'card_cvc' => '123',
+            ]);
 
         $response->assertRedirect('/certificates');
 
