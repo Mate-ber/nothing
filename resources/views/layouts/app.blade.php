@@ -269,7 +269,11 @@
                 <a href="{{ route('donations.create') }}">Donate</a>
                 <a href="{{ route('payments.index') }}">Payments</a>
                 <a href="{{ route('subscriptions.index') }}">Subscriptions</a>
-                <a href="{{ route('admin.stats.index') }}">Admin</a>
+                @auth
+                    @if (auth()->user()->email === config('services.nothing.admin_email'))
+                        <a href="{{ route('admin.stats.index') }}">Admin</a>
+                    @endif
+                @endauth
                 <a href="{{ route('about-nothing') }}">About</a>
                 <span class="spacer"></span>
 
