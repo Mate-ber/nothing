@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
             ->name('admin.nfts.destroy');
         Route::post('/admin/nfts/{nft}/restore', [NftAdminController::class, 'restore'])
             ->name('admin.nfts.restore');
+        Route::delete('/admin/nfts/{nft}/force-delete', [NftAdminController::class, 'forceDelete'])
+            ->name('admin.nfts.force-delete');
 
         Route::get('/admin/certificates', [CertificateAdminController::class, 'index'])
             ->name('admin.certificates.index');
@@ -54,6 +56,8 @@ Route::middleware('auth')->group(function () {
             ->name('admin.certificates.destroy');
         Route::post('/admin/certificates/{certificate}/restore', [CertificateAdminController::class, 'restore'])
             ->name('admin.certificates.restore');
+        Route::delete('/admin/certificates/{certificate}/force-delete', [CertificateAdminController::class, 'forceDelete'])
+            ->name('admin.certificates.force-delete');
 
         Route::get('/admin/subscriptions', [SubscriptionAdminController::class, 'index'])
             ->name('admin.subscriptions.index');
@@ -69,6 +73,8 @@ Route::middleware('auth')->group(function () {
             ->name('admin.subscriptions.destroy');
         Route::post('/admin/subscriptions/{subscription}/restore', [SubscriptionAdminController::class, 'restore'])
             ->name('admin.subscriptions.restore');
+        Route::delete('/admin/subscriptions/{subscription}/force-delete', [SubscriptionAdminController::class, 'forceDelete'])
+            ->name('admin.subscriptions.force-delete');
     });
 
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');

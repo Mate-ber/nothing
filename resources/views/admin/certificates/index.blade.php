@@ -60,6 +60,12 @@
                             @csrf
                             <button type="submit">Restore</button>
                         </form>
+                        |
+                        <form action="{{ route('admin.certificates.force-delete', $certificate->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Permanently delete this certificate? This cannot be undone.')">Permanently Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

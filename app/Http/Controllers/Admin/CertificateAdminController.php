@@ -92,4 +92,14 @@ class CertificateAdminController extends Controller
             ->route('admin.certificates.index')
             ->with('status', 'Certificate restored.');
     }
+
+    public function forceDelete($certificate)
+    {
+        $certificate = Certificate::onlyTrashed()->findOrFail($certificate);
+        $certificate->forceDelete();
+
+        return redirect()
+            ->route('admin.certificates.index')
+            ->with('status', 'Certificate permanently deleted.');
+    }
 }

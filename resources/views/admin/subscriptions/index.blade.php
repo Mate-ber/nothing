@@ -60,6 +60,12 @@
                             @csrf
                             <button type="submit">Restore</button>
                         </form>
+                        |
+                        <form action="{{ route('admin.subscriptions.force-delete', $subscription->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Permanently delete this subscription? This cannot be undone.')">Permanently Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

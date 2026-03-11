@@ -92,4 +92,14 @@ class NftAdminController extends Controller
             ->route('admin.nfts.index')
             ->with('status', 'NFT restored.');
     }
+
+    public function forceDelete($nft)
+    {
+        $nft = Nft::onlyTrashed()->findOrFail($nft);
+        $nft->forceDelete();
+
+        return redirect()
+            ->route('admin.nfts.index')
+            ->with('status', 'NFT permanently deleted.');
+    }
 }

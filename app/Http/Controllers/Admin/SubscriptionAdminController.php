@@ -91,4 +91,14 @@ class SubscriptionAdminController extends Controller
             ->route('admin.subscriptions.index')
             ->with('status', 'Subscription restored.');
     }
+
+    public function forceDelete($subscription)
+    {
+        $subscription = Subscription::onlyTrashed()->findOrFail($subscription);
+        $subscription->forceDelete();
+
+        return redirect()
+            ->route('admin.subscriptions.index')
+            ->with('status', 'Subscription permanently deleted.');
+    }
 }
